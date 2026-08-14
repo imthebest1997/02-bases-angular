@@ -1,0 +1,31 @@
+<style>
+  .high-power{
+    color: blueviolet;
+  }
+
+  .medium-power{
+    color: green;
+  }
+
+  .low-power{
+    color: blue;
+  }
+</style>
+
+
+<h1>DragonBall Page</h1>
+<hr/>
+
+
+<section class="row">
+  <dragonball-character-add
+    (newChar)="dragonBallService.addCharacter($event)"
+  />
+
+  <div class="col-md-6">
+    <dragonball-character-list
+      listName = "Lista de personajes poderosos"
+      [characters]="dragonBallService.characters()"
+    />
+  </div>
+</section>

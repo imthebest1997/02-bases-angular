@@ -1,0 +1,72 @@
+<style>
+  .high-power{
+    color: blueviolet;
+  }
+
+  .medium-power{
+    color: green;
+  }
+
+  .low-power{
+    color: blue;
+  }
+</style>
+
+
+<h1>DragonBall Page</h1>
+<hr/>
+
+<section class="row">
+  <div class="col-12 col-sm-6">
+    <h3>Agregar: {{ newCharacter().name }} </h3>
+
+    <input 
+      type="text" 
+      class="form-control" 
+      id="txtName" 
+      placeholder="Nombre del personaje"
+      [value]="newCharacter().name"
+      (change)="updateNewCharacterName(txtName.value)"
+      (input)="updateNewCharacterName(txtName.value)"
+      #txtName
+      />
+    
+    {{ newCharacter().powerLevel }}     
+    <input 
+      type="number" 
+      class="form-control mt-2" 
+      id="txtPower" 
+      placeholder="Poder del personaje"
+      [value]="newCharacter().powerLevel"
+      (change)="updateNewCharacterPowerLevel(+txtPower.value)"
+      (input)="updateNewCharacterPowerLevel(txtPower.valueAsNumber)"
+      #txtPower
+    />
+  </div>
+
+  <button 
+    class="btn btn-primary mt-2" 
+    id="btnAdd"
+    (click)="addCharacter()"
+  >Agregar</button>
+
+  <div class="row">
+    <h3>Lista de personajes: </h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+        @if(character.powerLevel > 5000) {
+          <li key={character.id}>
+            <span> {{ idx + 1 }} - {{character.name }} </span>
+            <strong 
+              [class.text-danger]="character.powerLevel > 9000" 
+              [class.text-success]="character.powerLevel <= 9000"
+              >                      
+              <!-- [ngClass] = "powerClasses()[idx]"   -->
+              {{character.powerLevel}} 
+            </strong>
+          </li>
+        } 
+      }
+    </ul>
+  </div>
+</section>

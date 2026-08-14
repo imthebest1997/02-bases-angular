@@ -1,0 +1,19 @@
+  <div class="row">
+    <h3>{{listName()}} </h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+        @if(character.powerLevel > 5000) {
+          <li key={character.id}>
+            <span> {{ idx + 1 }} - {{character.name }} </span>
+            <strong 
+              [class.text-danger]="character.powerLevel > 9000" 
+              [class.text-success]="character.powerLevel <= 9000"
+              >                      
+              <!-- [ngClass] = "powerClasses()[idx]"   -->
+              {{character.powerLevel}} 
+            </strong>
+          </li>
+        } 
+      }
+    </ul>
+  </div>

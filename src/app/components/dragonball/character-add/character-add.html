@@ -1,0 +1,31 @@
+  <div class="col-6">
+    <h3>Agregar: {{ newCharacter().name }} </h3>
+
+    <input 
+      type="text" 
+      class="form-control" 
+      id="txtName" 
+      placeholder="Nombre del personaje"
+      [value]="newCharacter().name"
+      (change)="updateNewCharacterName(txtName.value)"
+      (input)="updateNewCharacterName(txtName.value)"
+      #txtName
+      />
+    
+    <input 
+      type="number" 
+      class="form-control mt-2" 
+      id="txtPower" 
+      placeholder="Poder del personaje"
+      [value]="newCharacter().powerLevel"
+      (change)="updateNewCharacterPowerLevel(+txtPower.value)"
+      (input)="updateNewCharacterPowerLevel(txtPower.valueAsNumber)"
+      #txtPower
+    />
+
+    <button 
+      class="btn btn-primary mt-2" 
+      id="btnAdd"
+      (click)="addCharacter()"
+    >Agregar</button>
+  </div>
